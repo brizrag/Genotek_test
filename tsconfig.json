@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES2015", 
+    "module": "ESNext",
+    "lib": ["ES2015", "DOM", "ESNext"], 
+    "moduleResolution": "Node",
+    "strict": true,
+    "baseUrl": "./",
+    "paths": {
+      "@lk_pages/*": ["lk_pages/*"]
+    }
+  }
+}
