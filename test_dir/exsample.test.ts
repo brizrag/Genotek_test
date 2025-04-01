@@ -34,12 +34,23 @@ test.beforeEach(async () => {
 
 
 test('Тест на добавление товара и применение промокода', async () => {
-  await cupon.addPromo(); 
+  test.info().annotations.push(
+    { type: 'As an', description: 'Client' },
+    { type: 'I want', description: 'Entering a coupon and checking the cost' },
+    { type: 'So that', description: 'The discount is working' }
+  );
 
-  const originalPrice = await cupon.getOriginalPrice();
-  const discountedPrice = await cupon.getDiscountedPrice();
+  try {
+    await cupon.addPromo(); 
 
-  expect(discountedPrice).toBeLessThan(originalPrice);
-  
-  expect(discountedPrice).toBeGreaterThan(0);
+    const originalPrice = await cupon.getOriginalPrice();
+    const discountedPrice = await cupon.getDiscountedPrice();
+
+    expect(discountedPrice).toBeLessThan(originalPrice);
+    expect(discountedPrice).toBeGreaterThan(0);
+  } catch (error) {
+    console.error('Ошибка при применении промокода:', error);
+    throw error; 
+  }
 });
+
